@@ -27,21 +27,21 @@ function App() {
           </div>
 
           <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-lg">
-            Um evento transformador projetado para quebrar barreiras e expandir seus horizontes. Confirme sua presença e prepare-se para uma nova perspectiva.
+            Um evento transformador preparado para impulsionar seus treinos e expandir seus limites. Confirme sua presença e prepare-se para a experiência.
           </p>
 
           <div className="space-y-5 border-t border-white/10 pt-10">
             <div className="flex items-start space-x-4">
               <Calendar className="w-5 h-5 text-gray-400 mt-0.5" />
               <div>
-                <p className="text-white font-medium text-sm">06/03/2026</p>
+                <p className="text-white font-medium text-sm">28 de Março</p>
               </div>
             </div>
 
             <div className="flex items-start space-x-4">
               <Clock className="w-5 h-5 text-gray-400 mt-0.5" />
               <div>
-                <p className="text-white font-medium text-sm">18:00H</p>
+                <p className="text-white font-medium text-sm">07:30H às 10:30H</p>
               </div>
             </div>
 
@@ -49,8 +49,8 @@ function App() {
               <MapPin className="w-5 h-5 text-gray-400 mt-0.5" />
               <div>
                 <p className="text-white font-medium text-sm mt-0.5 leading-snug">
-                  Na loja Zem Multimarcas<br />
-                  <span className="text-gray-400 font-normal">R. Tesouro, 355 - Vale do Sol, Campo Verde - MT</span>
+                  Moove 2<br />
+                  <span className="text-gray-400 font-normal">Avenida Vereador César de Lima, 1068, Centro, Campo Verde - MT.</span>
                 </p>
               </div>
             </div>
