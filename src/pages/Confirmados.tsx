@@ -89,7 +89,7 @@ export default function Confirmados() {
                                     <Users className="w-6 h-6 text-moove-green" />
                                 </div>
                                 <div>
-                                    <h1 className="font-serif text-3xl text-white">Listagem de Convidados</h1>
+                                    <h1 className="font-sans font-bold tracking-tight text-3xl text-white">Listagem de Convidados</h1>
                                     <p className="text-moove-green text-sm mt-1 font-medium">
                                         {attendees.length} pessoas confirmadas
                                     </p>

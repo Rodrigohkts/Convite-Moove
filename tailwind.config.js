@@ -13,7 +13,7 @@ export default {
                 'moove-card': '#111111',
             },
             fontFamily: {
-                sans: ['Inter', 'sans-serif'],
+                sans: ['Montserrat', 'sans-serif'],
                 serif: ['"Playfair Display"', 'serif'],
             },
         },

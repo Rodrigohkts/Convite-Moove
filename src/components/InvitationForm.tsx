@@ -84,8 +84,8 @@ export default function InvitationForm() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
                     </svg>
                 </div>
-                <h3 className="font-serif text-3xl text-white mb-2 ml-1 animate-in slide-in-from-bottom-4 duration-700">Presença Confirmada!</h3>
-                <p className="text-gray-400 animate-in fade-in relative top-4 duration-1000 delay-300">Sua vaga para a Moove Flow Experience está garantida. Nos vemos lá.</p>
+                <h3 className="font-sans font-bold tracking-tight text-3xl text-white mb-2 ml-1 animate-in slide-in-from-bottom-4 duration-700">Presença Confirmada!</h3>
+                <p className="text-gray-400 font-sans font-medium animate-in fade-in relative top-4 duration-1000 delay-300">Sua vaga para a Moove Flow Experience está garantida. Nos vemos lá.</p>
             </div>
         );
     }
@@ -98,8 +98,8 @@ export default function InvitationForm() {
             </div>
 
             <div className="bg-[#0f0f12] border border-white/5 rounded-2xl p-8 sm:p-10 shadow-2xl relative transition-all duration-300 w-full z-10 overflow-hidden">
-                <h2 className="font-serif text-3xl sm:text-4xl text-white mb-3">Confirme sua Presença</h2>
-                <p className="text-sm text-gray-400 mb-8 font-light">
+                <h2 className="font-sans font-bold tracking-tight text-3xl sm:text-4xl text-white mb-3">Confirme sua Presença</h2>
+                <p className="text-sm text-gray-400 mb-8 font-light font-sans">
                     Preencha seus dados abaixo para garantir seu lugar.
                 </p>
 
