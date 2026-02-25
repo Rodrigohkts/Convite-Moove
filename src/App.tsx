@@ -1,14 +1,12 @@
 import { Calendar, Clock, MapPin } from 'lucide-react';
 import InvitationForm from './components/InvitationForm';
+import { ShaderBackground } from './components/ui/ShaderBackground';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#1c1c1c] flex items-center justify-center relative overflow-hidden font-sans selection:bg-moove-green/30">
-      {/* Decorative Animated Background */}
-      <div className="animated-bg">
-        <div className="wave"></div>
-        <div className="wave"></div>
-      </div>
+    <div className="min-h-screen bg-[#111111] flex items-center justify-center relative overflow-hidden font-sans selection:bg-moove-green/30">
+      {/* Decorative Animated 3D Background */}
+      <ShaderBackground />
 
       <div className="max-w-6xl w-full mx-auto px-6 py-12 md:py-20 lg:p-24 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 relative z-10">
 
