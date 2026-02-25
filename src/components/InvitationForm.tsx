@@ -91,11 +91,13 @@ export default function InvitationForm() {
     }
 
     return (
-        <div className="relative group z-10">
-            {/* Animated Glow Border */}
-            <div className="absolute -inset-[1px] bg-gradient-to-r from-transparent via-moove-green/50 to-transparent rounded-2xl blur-sm opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+        <div className="relative group z-10 rounded-[20px] p-[2px] overflow-visible">
+            {/* Animated Rotating Border Effect */}
+            <div className="absolute inset-0 rounded-[20px] overflow-hidden opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] origin-center bg-[conic-gradient(from_0deg,transparent_0_240deg,rgba(163,255,18,0.8)_360deg)] animate-[spin_3s_linear_infinite]"></div>
+            </div>
 
-            <div className="bg-[#0f0f12] border border-white/5 rounded-2xl p-8 sm:p-10 shadow-2xl shadow-moove-green/10 relative transition-all duration-300">
+            <div className="bg-[#0f0f12] border border-white/5 rounded-2xl p-8 sm:p-10 shadow-2xl relative transition-all duration-300 w-full z-10 overflow-hidden">
                 <h2 className="font-serif text-3xl sm:text-4xl text-white mb-3">Confirme sua Presença</h2>
                 <p className="text-sm text-gray-400 mb-8 font-light">
                     Preencha seus dados abaixo para garantir seu lugar.
