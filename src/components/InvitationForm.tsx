@@ -67,7 +67,8 @@ export default function InvitationForm() {
             setSuccess(true);
         } catch (err: any) {
             console.error(err);
-            setError('Ocorreu um erro ao confirmar presença. Tente novamente.');
+            // Mostrar o erro exato do Supabase na tela para investigar o motivo
+            setError(`Erro do Banco: ${err.message || 'Ocorreu um erro desconhecido.'}`);
         } finally {
             setLoading(false);
         }
@@ -75,93 +76,100 @@ export default function InvitationForm() {
 
     if (success) {
         return (
-            <div className="bg-moove-card border border-white/5 rounded-2xl p-8 shadow-2xl z-10 relative flex flex-col items-center justify-center text-center h-[460px]">
-                <div className="w-16 h-16 bg-moove-green/10 rounded-full flex items-center justify-center mb-6">
-                    <svg className="w-8 h-8 text-moove-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+            <div className="bg-moove-card border border-moove-green/30 rounded-2xl p-8 shadow-[0_0_40px_rgba(178,255,0,0.15)] z-10 relative flex flex-col items-center justify-center text-center h-[460px] animate-in fade-in zoom-in duration-500">
+                <div className="w-20 h-20 bg-moove-green/20 rounded-full flex items-center justify-center mb-6 animate-bounce shadow-[0_0_30px_rgba(178,255,0,0.4)] relative">
+                    {/* Ripple effect */}
+                    <div className="absolute inset-0 rounded-full border-2 border-moove-green animate-ping opacity-20"></div>
+                    <svg className="w-10 h-10 text-moove-green relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
                     </svg>
                 </div>
-                <h3 className="font-serif text-3xl text-white mb-2">Presença Confirmada!</h3>
-                <p className="text-gray-400">Sua vaga para a Moove Flow Experience está garantida. Nos vemos lá.</p>
+                <h3 className="font-serif text-3xl text-white mb-2 ml-1 animate-in slide-in-from-bottom-4 duration-700">Presença Confirmada!</h3>
+                <p className="text-gray-400 animate-in fade-in relative top-4 duration-1000 delay-300">Sua vaga para a Moove Flow Experience está garantida. Nos vemos lá.</p>
             </div>
         );
     }
 
     return (
-        <div className="bg-[#0f0f12] border border-white/5 rounded-2xl p-8 sm:p-10 shadow-2xl shadow-moove-green/5 z-10 relative transition-all duration-300 hover:shadow-moove-green/10">
-            <h2 className="font-serif text-3xl sm:text-4xl text-white mb-3">Confirme sua Presença</h2>
-            <p className="text-sm text-gray-400 mb-8 font-light">
-                Preencha seus dados abaixo para garantir seu lugar.
-            </p>
+        <div className="relative group z-10">
+            {/* Animated Glow Border */}
+            <div className="absolute -inset-[1px] bg-gradient-to-r from-transparent via-moove-green/50 to-transparent rounded-2xl blur-sm opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
 
-            {error && (
-                <div className="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3 rounded mb-6 text-sm">
-                    {error}
-                </div>
-            )}
+            <div className="bg-[#0f0f12] border border-white/5 rounded-2xl p-8 sm:p-10 shadow-2xl shadow-moove-green/10 relative transition-all duration-300">
+                <h2 className="font-serif text-3xl sm:text-4xl text-white mb-3">Confirme sua Presença</h2>
+                <p className="text-sm text-gray-400 mb-8 font-light">
+                    Preencha seus dados abaixo para garantir seu lugar.
+                </p>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                    <label className="text-xs font-semibold tracking-wide text-gray-400 uppercase">
-                        Nome Completo
-                    </label>
-                    <input
-                        type="text"
-                        required
-                        placeholder="Digite seu nome"
-                        value={formData.nome}
-                        onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                        className="w-full bg-[#18181b] border border-white/5 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-moove-green transition-all"
-                    />
-                </div>
+                {error && (
+                    <div className="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3 rounded mb-6 text-sm">
+                        {error}
+                    </div>
+                )}
 
-                <div className="space-y-2">
-                    <label className="text-xs font-semibold tracking-wide text-gray-400 uppercase">
-                        Telefone <span className="text-gray-500 font-normal">(WhatsApp)</span>
-                    </label>
-                    <input
-                        type="text"
-                        required
-                        placeholder="(00) 00000-0000"
-                        value={formData.telefone}
-                        onChange={handlePhoneChange}
-                        className="w-full bg-[#18181b] border border-white/5 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-moove-green transition-all"
-                    />
-                </div>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="space-y-2 relative">
+                        <label className="text-xs font-semibold tracking-wide text-gray-400 uppercase">
+                            Nome Completo
+                        </label>
+                        <input
+                            type="text"
+                            required
+                            placeholder="Digite seu nome"
+                            value={formData.nome}
+                            onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                            className="w-full bg-[#18181b] border border-white/5 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-moove-green/50 focus:ring-1 focus:ring-moove-green/50 focus:shadow-[0_0_15px_rgba(178,255,0,0.15)] transition-all duration-300 relative z-10"
+                        />
+                    </div>
 
-                <div className="space-y-2">
-                    <label className="text-xs font-semibold tracking-wide text-gray-400 uppercase">
-                        CPF
-                    </label>
-                    <input
-                        type="text"
-                        required
-                        placeholder="000.000.000-00"
-                        value={formData.cpf}
-                        onChange={handleCpfChange}
-                        className="w-full bg-[#18181b] border border-white/5 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-moove-green transition-all"
-                    />
-                </div>
+                    <div className="space-y-2 relative">
+                        <label className="text-xs font-semibold tracking-wide text-gray-400 uppercase">
+                            Telefone <span className="text-gray-500 font-normal">(WhatsApp)</span>
+                        </label>
+                        <input
+                            type="text"
+                            required
+                            placeholder="(00) 00000-0000"
+                            value={formData.telefone}
+                            onChange={handlePhoneChange}
+                            className="w-full bg-[#18181b] border border-white/5 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-moove-green/50 focus:ring-1 focus:ring-moove-green/50 focus:shadow-[0_0_15px_rgba(178,255,0,0.15)] transition-all duration-300 relative z-10"
+                        />
+                    </div>
 
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-white hover:bg-gray-100 text-black font-medium text-15px rounded-xl py-3.5 mt-4 transition-colors flex items-center justify-center space-x-2 disabled:opacity-70"
-                >
-                    {loading ? (
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                    ) : (
-                        <>
-                            <span>Confirmar Presença</span>
-                            <ArrowRight className="w-4 h-4 ml-1" />
-                        </>
-                    )}
-                </button>
-            </form>
+                    <div className="space-y-2 relative">
+                        <label className="text-xs font-semibold tracking-wide text-gray-400 uppercase">
+                            CPF
+                        </label>
+                        <input
+                            type="text"
+                            required
+                            placeholder="000.000.000-00"
+                            value={formData.cpf}
+                            onChange={handleCpfChange}
+                            className="w-full bg-[#18181b] border border-white/5 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-moove-green/50 focus:ring-1 focus:ring-moove-green/50 focus:shadow-[0_0_15px_rgba(178,255,0,0.15)] transition-all duration-300 relative z-10"
+                        />
+                    </div>
 
-            <p className="text-[11px] text-gray-500 text-center mt-6 tracking-wide px-4">
-                Seus dados estão seguros e serão utilizados apenas para a organização do evento.
-            </p>
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full bg-white hover:bg-moove-green hover:text-black hover:shadow-[0_0_20px_rgba(178,255,0,0.4)] text-black font-semibold tracking-wide text-[15px] rounded-xl py-3.5 mt-4 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-70 group"
+                    >
+                        {loading ? (
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                        ) : (
+                            <>
+                                <span>Confirmar Presença</span>
+                                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                            </>
+                        )}
+                    </button>
+                </form>
+
+                <p className="text-[11px] text-gray-500 text-center mt-6 tracking-wide px-4">
+                    Seus dados estão seguros e serão utilizados apenas para a organização do evento.
+                </p>
+            </div>
         </div>
     );
 }
