@@ -26,14 +26,18 @@ export default function Home() {
             />
           </div>
 
-          <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-lg">
-            Um encontro reservado,<br />
-            guiado por especialistas,<br />
-            criado para quem busca<br />
-            o ápice da harmonia<br />
-            entre corpo, mente e<br />
-            consciência.
-          </p>
+          <div className="mb-12">
+            <h1 className="text-5xl md:text-7xl font-bold text-moove-green leading-[0.9] tracking-tight mb-4 font-sans">
+              Grazieli<br />
+              Carneosso
+            </h1>
+            <p className="text-gray-200 text-lg md:text-xl font-medium leading-snug w-full">
+              Personal Trainer e<br />
+              Proprietária da Moove<br />
+              Academia e Studio Fit em<br />
+              Campo Verde - MT.
+            </p>
+          </div>
 
           <div className="space-y-5 border-t border-white/10 pt-10">
             <div className="flex items-start space-x-4">

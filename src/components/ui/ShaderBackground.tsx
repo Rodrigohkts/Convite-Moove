@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { ShaderPlane } from './background-paper-shaders';
+import { ShaderPlane, FloatingParticles } from './background-paper-shaders';
 
 export function ShaderBackground() {
     return (
@@ -11,6 +11,8 @@ export function ShaderBackground() {
                     color1="#111111"
                     color2="#666666"
                 />
+                {/* Green Pulsating Particles */}
+                <FloatingParticles count={250} color="#A3FF12" />
             </Canvas>
         </div>
     );

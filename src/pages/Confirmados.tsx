@@ -8,6 +8,7 @@ interface Attendee {
     id: string;
     nome: string;
     telefone: string;
+    cpf: string;
     created_at: string;
 }
 
@@ -38,14 +39,24 @@ export default function Confirmados() {
         fetchAttendees();
     }, []);
 
-    // Format phone to mask partly
+    // Format phone
     const formatPhone = (phone: string) => {
         if (!phone || phone.length < 10) return phone;
         const cleaned = phone.replace(/\D/g, '');
         if (cleaned.length === 11) {
-            return `(${cleaned.slice(0, 2)}) *****-${cleaned.slice(7)}`;
+            return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`;
         }
-        return `(${cleaned.slice(0, 2)}) ****-${cleaned.slice(6)}`;
+        return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 6)}-${cleaned.slice(6)}`;
+    };
+
+    // Format CPF
+    const formatCpf = (cpf: string) => {
+        if (!cpf) return cpf;
+        const cleaned = cpf.replace(/\D/g, '');
+        if (cleaned.length === 11) {
+            return `${cleaned.slice(0, 3)}.${cleaned.slice(3, 6)}.${cleaned.slice(6, 9)}-${cleaned.slice(9)}`;
+        }
+        return cpf;
     };
 
     return (
@@ -57,7 +68,7 @@ export default function Confirmados() {
 
                 {/* Header */}
                 <div className="w-full flex items-center justify-between mb-12 border-b border-white/10 pb-6">
-                    <Link to="/" className="text-gray-400 hover:text-white transition-colors flex items-center text-sm font-medium">
+                    <Link to="/" className="text-gray-400 hover:text-moove-green transition-colors flex items-center text-sm font-medium">
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         Voltar
                     </Link>
@@ -72,15 +83,17 @@ export default function Confirmados() {
                     <div className="absolute -inset-[1px] bg-gradient-to-b from-moove-green/10 to-transparent rounded-2xl blur-sm opacity-50"></div>
 
                     <div className="relative z-10">
-                        <div className="flex items-center space-x-4 mb-8">
-                            <div className="w-12 h-12 bg-moove-green/10 rounded-xl flex items-center justify-center">
-                                <Users className="w-6 h-6 text-moove-green" />
-                            </div>
-                            <div>
-                                <h1 className="font-serif text-3xl text-white">Listagem de Convidados</h1>
-                                <p className="text-gray-400 text-sm mt-1">
-                                    {attendees.length} pessoas confirmaram presença
-                                </p>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between space-y-4 sm:space-y-0 mb-10">
+                            <div className="flex items-center space-x-4">
+                                <div className="w-12 h-12 bg-moove-green/10 rounded-xl flex items-center justify-center border border-moove-green/20">
+                                    <Users className="w-6 h-6 text-moove-green" />
+                                </div>
+                                <div>
+                                    <h1 className="font-serif text-3xl text-white">Listagem de Convidados</h1>
+                                    <p className="text-moove-green text-sm mt-1 font-medium">
+                                        {attendees.length} pessoas confirmadas
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
@@ -96,33 +109,46 @@ export default function Confirmados() {
                                 <p className="text-gray-400 text-sm">Carregando convidados...</p>
                             </div>
                         ) : (
-                            <div className="space-y-3">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {attendees.length === 0 ? (
-                                    <div className="text-center py-16 border border-white/5 rounded-xl bg-white/5 border-dashed">
+                                    <div className="text-center py-16 border border-white/5 rounded-xl bg-white/5 border-dashed col-span-full">
                                         <p className="text-gray-400">Nenhuma pessoa confirmada ainda.</p>
                                     </div>
                                 ) : (
                                     attendees.map((attendee, index) => (
                                         <div
                                             key={attendee.id}
-                                            className="flex items-center justify-between p-4 rounded-xl border border-white/5 bg-[#18181b]/50 hover:bg-[#18181b] transition-colors"
+                                            className="relative group rounded-[16px] p-[2px] overflow-visible"
                                             style={{ animationDelay: `${index * 50}ms` }}
                                         >
-                                            <div className="flex items-center space-x-4">
-                                                <div className="w-10 h-10 rounded-full bg-moove-green/5 flex items-center justify-center text-moove-green font-bold text-sm">
-                                                    {attendee.nome.charAt(0).toUpperCase()}
-                                                </div>
-                                                <div>
-                                                    <p className="text-white font-medium">{attendee.nome}</p>
-                                                    <p className="text-xs text-gray-500 mt-0.5">
-                                                        Registrado em {new Date(attendee.created_at).toLocaleDateString('pt-BR')}
-                                                    </p>
-                                                </div>
+                                            {/* Rotating Animated Border for Each Card */}
+                                            <div className="absolute inset-0 rounded-[16px] overflow-hidden opacity-30 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250%] h-[250%] origin-center bg-[conic-gradient(from_0deg,transparent_0_240deg,rgba(163,255,18,0.7)_360deg)] animate-[spin_4s_linear_infinite]"></div>
                                             </div>
-                                            <div className="text-right">
-                                                <span className="text-xs font-mono text-gray-400 bg-black/50 px-3 py-1.5 rounded-lg border border-white/5">
-                                                    {formatPhone(attendee.telefone)}
-                                                </span>
+
+                                            <div className="relative z-10 bg-[#161618] rounded-2xl p-5 border border-white/5 shadow-xl transition-all h-full flex flex-col justify-between">
+                                                <div className="flex items-start space-x-4 mb-4">
+                                                    <div className="w-12 h-12 rounded-full bg-moove-green/10 flex items-center justify-center text-moove-green font-bold text-lg border border-moove-green/20">
+                                                        {attendee.nome.charAt(0).toUpperCase()}
+                                                    </div>
+                                                    <div className="pt-1">
+                                                        <p className="text-white font-semibold text-lg max-w-[200px] truncate" title={attendee.nome}>{attendee.nome}</p>
+                                                        <p className="text-xs text-gray-500 mt-1">
+                                                            {new Date(attendee.created_at).toLocaleDateString('pt-BR')} às {new Date(attendee.created_at).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <div className="space-y-2 mt-4 pt-4 border-t border-white/5">
+                                                    <div className="flex justify-between items-center text-sm">
+                                                        <span className="text-gray-500">Telefone:</span>
+                                                        <span className="text-gray-200 font-mono tracking-wide">{formatPhone(attendee.telefone)}</span>
+                                                    </div>
+                                                    <div className="flex justify-between items-center text-sm">
+                                                        <span className="text-gray-500">CPF:</span>
+                                                        <span className="text-gray-200 font-mono tracking-wide">{formatCpf(attendee.cpf)}</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     ))

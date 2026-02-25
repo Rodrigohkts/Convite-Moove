@@ -118,3 +118,51 @@ export function EnergyRing({
         </mesh>
     )
 }
+
+export function FloatingParticles({ count = 150, color = "#A3FF12" }) {
+    const mesh = useRef<THREE.Points>(null)
+
+    const particlesPosition = useMemo(() => {
+        const positions = new Float32Array(count * 3)
+        for (let i = 0; i < count; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 15     // X
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 15 // Y
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 5  // Z
+        }
+        return positions
+    }, [count])
+
+    useFrame((state) => {
+        if (mesh.current) {
+            // Slow rotation for floating effect
+            mesh.current.rotation.y = state.clock.elapsedTime * 0.03
+            mesh.current.rotation.x = state.clock.elapsedTime * 0.02
+
+            // Pulsating skin/glow effect via opacity
+            const material = mesh.current.material as THREE.PointsMaterial
+            material.opacity = 0.3 + Math.sin(state.clock.elapsedTime * 1.5) * 0.4
+        }
+    })
+
+    return (
+        <points ref={mesh}>
+            <bufferGeometry>
+                <bufferAttribute
+                    attach="attributes-position"
+                    count={particlesPosition.length / 3}
+                    array={particlesPosition}
+                    itemSize={3}
+                />
+            </bufferGeometry>
+            <pointsMaterial
+                size={0.03}
+                color={new THREE.Color(color)}
+                transparent
+                opacity={0.5}
+                sizeAttenuation
+                depthWrite={false}
+                blending={THREE.AdditiveBlending}
+            />
+        </points>
+    )
+}
