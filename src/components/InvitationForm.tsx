@@ -155,7 +155,7 @@ export default function InvitationForm() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-white hover:bg-moove-green hover:text-black hover:shadow-[0_0_20px_rgba(178,255,0,0.4)] text-black font-semibold tracking-wide text-[15px] rounded-xl py-3.5 mt-4 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-70 group"
+                        className="w-full bg-moove-green hover:bg-[#b5ff33] hover:shadow-[0_0_20px_rgba(178,255,0,0.5)] text-black font-semibold tracking-wide text-[15px] rounded-xl py-3.5 mt-4 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-70 group"
                     >
                         {loading ? (
                             <Loader2 className="w-5 h-5 animate-spin" />
