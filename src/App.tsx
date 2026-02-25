@@ -19,11 +19,11 @@ function App() {
           </div>
 
           <div className="mb-6 mt-4">
-            <h1 className="font-sans font-black text-6xl md:text-7xl lg:text-8xl text-white leading-none tracking-tighter">
-              <span className="text-white">moove</span><br />
-              <span className="text-moove-green text-[1.2em]">FLOW</span><br />
-              <span className="text-sm tracking-[0.5em] font-medium mt-2 block text-gray-300">EXPERIENCE</span>
-            </h1>
+            <img
+              src="/logo-flow.png"
+              alt="Moove Flow"
+              className="w-full max-w-[400px] h-auto object-contain"
+            />
           </div>
 
           <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-lg">
