@@ -27,7 +27,12 @@ function App() {
           </div>
 
           <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-lg">
-            Um evento transformador preparado para impulsionar seus treinos e expandir seus limites. Confirme sua presença e prepare-se para a experiência.
+            Um encontro reservado,<br />
+            guiado por especialistas,<br />
+            criado para quem busca<br />
+            o ápice da harmonia<br />
+            entre corpo, mente e<br />
+            consciência.
           </p>
 
           <div className="space-y-5 border-t border-white/10 pt-10">
