@@ -3,25 +3,30 @@ import InvitationForm from './components/InvitationForm';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#070707] flex items-center justify-center relative overflow-hidden font-sans selection:bg-moove-green/30">
-      {/* Decorative Glows */}
-      <div className="glow-effect top-[-100px] left-[-100px]" />
-      <div className="glow-effect bottom-[-100px] right-[-100px]" />
+    <div className="min-h-screen bg-[#1c1c1c] flex items-center justify-center relative overflow-hidden font-sans selection:bg-moove-green/30">
+      {/* Decorative Animated Background */}
+      <div className="animated-bg">
+        <div className="wave"></div>
+        <div className="wave"></div>
+      </div>
 
       <div className="max-w-6xl w-full mx-auto px-6 py-12 md:py-20 lg:p-24 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 relative z-10">
 
         {/* Left Section - Event Details */}
         <div className="flex flex-col justify-center max-w-xl">
           <div className="mb-2">
-            <span className="text-[11px] font-bold tracking-[0.2em] text-gray-400 uppercase">
-              Convite Exclusivo
+            <span className="text-[11px] font-bold tracking-[0.2em] text-moove-green uppercase">
+              CONVITE ESPECIAL & EXCLUSIVO
             </span>
           </div>
 
-          <h1 className="font-serif text-6xl md:text-7xl lg:text-8xl text-white mb-6 leading-[1.1]">
-            Saia da <br />
-            <span className="italic text-gray-300">Torre</span>
-          </h1>
+          <div className="mb-6 mt-4">
+            <h1 className="font-sans font-black text-6xl md:text-7xl lg:text-8xl text-white leading-none tracking-tighter">
+              <span className="text-white">moove</span><br />
+              <span className="text-moove-green text-[1.2em]">FLOW</span><br />
+              <span className="text-sm tracking-[0.5em] font-medium mt-2 block text-gray-300">EXPERIENCE</span>
+            </h1>
+          </div>
 
           <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-lg">
             Um evento transformador projetado para quebrar barreiras e expandir seus horizontes. Confirme sua presença e prepare-se para uma nova perspectiva.
