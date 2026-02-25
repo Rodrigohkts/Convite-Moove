@@ -144,16 +144,14 @@ export function FloatingParticles({ count = 150, color = "#A3FF12" }) {
         }
     })
 
+    const geometry = useMemo(() => {
+        const geo = new THREE.BufferGeometry()
+        geo.setAttribute('position', new THREE.BufferAttribute(particlesPosition, 3))
+        return geo
+    }, [particlesPosition])
+
     return (
-        <points ref={mesh}>
-            <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    count={particlesPosition.length / 3}
-                    array={particlesPosition}
-                    itemSize={3}
-                />
-            </bufferGeometry>
+        <points ref={mesh} geometry={geometry}>
             <pointsMaterial
                 size={0.03}
                 color={new THREE.Color(color)}
